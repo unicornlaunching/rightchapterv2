@@ -1,12 +1,14 @@
 import streamlit as st
 import openai
+import toml
 from bokeh.models.widgets import Button, Div
 from bokeh.layouts import column
 from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
 
-# OpenAI API Key (ensure this is kept secure and not exposed publicly)
-openai.api_key = 'your-api-key-here'
+# Load API key from the .toml file
+config = toml.load("config.toml")
+openai.api_key = config["openai"]["api_key"]
 
 # Create the Speak button and timer display
 stt_button = Button(label="Speak", width=100)
@@ -37,12 +39,4 @@ if result:
 
         # Call OpenAI API to generate the book chapter
         response = openai.Completion.create(
-          engine="text-davinci-003",  # or use "text-davinci-004" if available
-          prompt=prompt,
-          max_tokens=1024  # Adjust based on how long you want the chapter to be
-        )
-
-        # Display the generated book chapter
-        chapter = response.choices[0].text.strip()
-        st.subheader("Generated Book Chapter")
-        st.write(chapter)
+          engine="text-davinci-003",  # or use "text-davinci-
