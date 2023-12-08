@@ -1,0 +1,4 @@
+streamlit==1.10.0  # Use the latest compatible version
+bokeh==2.4.2       # Use the latest compatible version
+streamlit_bokeh_events==0.1.2  # Use the latest compatible version
+openai==0.18.0     # Use the latest compatible version
